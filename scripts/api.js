@@ -20,8 +20,8 @@ function sendAPI(method, url) {
         xhr.send();
     })
 }
+var domain = "https://beta.beautifulhomes.com";
 async function callXF() {
-    var domain = "https://beta.beautifulhomes.com";
     var data = await sendAPI("GET", domain + "/content/experience-fragments/asianpaintsbeautifulhomes/us/en/experience-fragment/master.html")
 
     var header = document.querySelector("header")
@@ -58,4 +58,13 @@ async function callXF() {
         document.querySelector("body").append(script);
     })
 }
-callXF()
+callXF();
+callFooterXF();
+async function callFooterXF() {
+    var data = await sendAPI("GET", domain + "/content/experience-fragments/asianpaintsbeautifulhomes/us/en/footer/master.html")
+    var dom = document.createElement("div");
+    dom.innerHTML = data;
+
+    var footer = dom.querySelector(".root")
+    document.body.append(footer);
+}
