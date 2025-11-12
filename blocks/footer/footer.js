@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
+import { readBlockConfig, decorateIcons, getMetadata } from '../../scripts/aem.js';
 
 /**
  * loads and decorates the footer
@@ -7,10 +7,12 @@ import { readBlockConfig, decorateIcons } from '../../scripts/aem.js';
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
+  const footerMeta = getMetadata('footer');
 
   // fetch footer content
-  const footerPath = cfg.footer || '/footer';
-  const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
+  // const footerPath = cfg.footer || '/footer';
+  // const resp = await fetch(`${footerPath}.plain.html`, window.location.pathname.endsWith('/footer') ? { cache: 'reload' } : {});
+  const resp = await fetch(footerMeta);
 
   if (resp.ok) {
     const html = await resp.text();
