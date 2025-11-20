@@ -1,0 +1,249 @@
+.section.design-takeaways {
+  padding-bottom: 0;
+}
+
+.section.design-takeaways .default-content-wrapper {
+  margin-top: 64px;
+}
+
+.section.design-takeaways .default-content-wrapper h1 {
+  color: #26282b;
+  font-family: BioRhyme, sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 44px;
+}
+
+.section.design-takeaways .default-content-wrapper p {
+  margin-top: 32px;
+  padding-bottom: 28px;
+}
+
+.section.design-takeaways .default-content-wrapper p strong {
+  display: inline-block;
+  background: #26282b;
+  padding: 8px 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.01em;
+  margin: 0 8px 12px 0;
+}
+
+.section.design-takeaways .default-content-wrapper ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  font-size: 18px;
+  line-height: 28px;
+  border-top: 1px solid #e8ebed;
+  color: #26282b;
+}
+
+.section.design-takeaways .default-content-wrapper ul li {
+  list-style: none;
+}
+
+.section.design-takeaways .default-content-wrapper ul li a {
+  font-weight: 700;
+  color: black;
+  cursor: pointer;
+}
+
+.section.design-takeaways .default-content-wrapper ul li a:hover {
+  text-decoration: none;
+}
+
+@media (width <= 768px) {
+  .section.design-takeaways {
+    padding-top: 60px;
+  }
+
+  .section.design-takeaways .default-content-wrapper {
+    margin-top: 20px;
+  }
+
+  .section.design-takeaways .default-content-wrapper ul {
+    flex-direction: column;
+    font-size: 16px;
+    gap: 20px;
+    align-items: start;
+  }
+}
+
+.section.interior-design-img .default-content-wrapper {
+  margin-top: 55px;
+}
+
+.section.interior-design-img .default-content-wrapper ul {
+  position: relative;
+}
+
+.section.interior-design-img .default-content-wrapper ul > li > span {
+  width: 100%;
+  height: 100%;
+}
+
+.section.interior-design-img .default-content-wrapper ul > li > span img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.section.interior-design-img .default-content-wrapper ul > li:nth-child(n+2) {
+  position: absolute;
+  z-index: 1;
+  right: 120px;
+  bottom: -30px;
+}
+
+.section.interior-design-img .default-content-wrapper ul > li:nth-child(n+2) a span {
+  width: 64px;
+  height: 64px;
+  display: contents;
+}
+
+.section.interior-design-img .default-content-wrapper ul > li:last-child {
+  right: 30px;
+}
+
+.section.interior-design-img .default-content-wrapper > p {
+  font-family: Lato, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #26282b;
+  padding-bottom: 30px;
+}
+
+.section.interior-design-img .default-content-wrapper > p:has(strong) {
+  margin: 40px 0;
+  padding: 0;
+}
+
+@media (width <= 768px) {
+  .section.interior-design-img {
+    padding: 0 16px;
+  }
+
+  .section.interior-design-img .default-content-wrapper > p {
+    font-size: 16px;
+    padding-bottom: 20px;
+  }
+
+  .section.interior-design-img .default-content-wrapper > p:has(strong) {
+    margin: 30px 0;
+    padding: 0;
+  }
+}
+
+/* Breadcrumb css Start */
+.section.breadcrumb {
+  max-width: 1440px;
+  padding-bottom: 0;
+}
+
+.section.breadcrumb .default-content-wrapper {
+  max-width: 1440px;
+  margin-top: 20px;
+  padding: 95px 0 0;
+}
+
+.section.breadcrumb .default-content-wrapper > ul {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 1.56;
+  gap: 36px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.breadcrumb .default-content-wrapper > ul > li {
+  white-space: nowrap;
+
+  /* overflow: hidden; */
+  position: relative;
+}
+
+.section.breadcrumb .default-content-wrapper > ul > li::after {
+  position: absolute;
+  content: "";
+  border: solid black;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  top: 40%;
+  z-index: 1;
+  right: -19px;
+  line-height: 1px;
+}
+
+.section.breadcrumb .default-content-wrapper > ul > li:last-child::after {
+  display: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.section.breadcrumb .default-content-wrapper > ul > li a {
+  color: #454c53;
+  margin-top: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.section.breadcrumb .default-content-wrapper > ul > li a:hover {
+  text-decoration: none;
+}
+
+@media (width <= 992px) {
+  .section.breadcrumb {
+    display: none;
+  }
+}
+
+/* Breadcrumb css End */
+
+/* false Ceiling css Start */
+
+.section.design-takeaways.false-ceiling,
+.section.design-takeaways.false-ceiling >div{
+  max-width: 1440px;
+}
+
+.section.design-takeaways.false-ceiling .default-content-wrapper{
+  margin-bottom: 50px;
+}
+
+.section.design-takeaways.false-ceiling .default-content-wrapper h1{
+  margin-top: 67px;
+  margin-bottom: 67px;
+  font-family: BioRhyme;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 58.8px;
+  color: #000;
+}
+
+.section.design-takeaways.false-ceiling .default-content-wrapper p{
+  padding: unset;
+}
+
+@media screen and (max-width: 992px){
+  .section.design-takeaways.false-ceiling .default-content-wrapper h1{
+    margin-top: 27px;
+    margin-bottom: 18px;
+    font-size: 22px;
+    line-height: 28.6px;
+  }
+}
+
+.background-black{
+    background-color: black !important;
+}
+
+/* false Ceiling css End */

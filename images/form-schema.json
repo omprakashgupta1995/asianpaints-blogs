@@ -1,0 +1,123 @@
+[
+    {
+        "field": "quote",
+        "type": "textarea",
+        "label": "Quote",
+        "help": "",
+        "options": "",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": "true"
+    },
+    {
+        "field": "who",
+        "type": "text",
+        "label": "Who said it?",
+        "help": "",
+        "options": "",
+        "placeholder": "Mark Twain, probably",
+        "default": "",
+        "conditional": "",
+        "required": "true"
+    },
+    {
+        "field": "source",
+        "type": "radio",
+        "label": "Quote source",
+        "help": "",
+        "options": "Movie, Book, TV, Other",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": ""
+    },
+    {
+        "field": "otherSource",
+        "type": "text",
+        "label": "If \"Other,\" please specify",
+        "help": "",
+        "options": "",
+        "placeholder": "",
+        "default": "",
+        "conditional": "source-other",
+        "required": ""
+    },
+    {
+        "field": "reasons",
+        "type": "checkbox",
+        "label": "Select the reason(s) you like the quote",
+        "help": "",
+        "options": "Humor, Insight, Something else",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": ""
+    },
+    {
+        "field": "toggle",
+        "type": "toggle",
+        "label": "An example toggle field",
+        "help": "This is just a demonstration of a toggle field.",
+        "options": "",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": ""
+    },
+    {
+        "field": "country",
+        "type": "select",
+        "label": "Country",
+        "help": "",
+        "options": "USA, Germany, Switzerland, Canada",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": ""
+    },
+    {
+        "field": "state",
+        "type": "select",
+        "label": "Select a state...",
+        "help": "",
+        "options": "https://main--aem-block-collection--adobe.aem.page/block-collection/form-v2.json?sheet=states",
+        "placeholder": "",
+        "default": "",
+        "conditional": "country-usa",
+        "required": ""
+    },
+    {
+        "field": "submit",
+        "type": "submit",
+        "label": "Submit",
+        "help": "",
+        "options": "",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": ""
+    },
+    {
+        "field": "reset",
+        "type": "reset",
+        "label": "Clear",
+        "help": "",
+        "options": "",
+        "placeholder": "",
+        "default": "",
+        "conditional": "",
+        "required": ""
+    },
+    {
+        "field": "",
+        "type": "confirmation",
+        "label": "https://main--helix-block-collection--adobe.aem.live/block-collection/form-thank-you",
+        "help": "",
+        "options": "",
+        "placeholder": "",
+        "default": "https://main--helix-block-collection--adobe.aem.live/block-collection/form-thank-you",
+        "conditional": "",
+        "required": ""
+    }
+]
