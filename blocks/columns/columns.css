@@ -31,3 +31,26 @@
     order: unset;
   }
 }
+
+.footer-wrapper .columns{
+  display: flex;
+  align-items: flex-end;
+  gap: 22.813rem;
+
+}
+
+@media screen and (max-width: 767px) {
+  .footer-wrapper .columns{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+
+}
+
+}
+
+.footer-wrapper .columns div div p .icon{
+    width: 201px;
+    height: 59px;
+
+}

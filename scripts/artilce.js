@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+/* document.addEventListener("DOMContentLoaded", function () {
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
 
@@ -115,3 +115,4 @@ function similararticles(resp) {
     fs.init();
 }
 
+ */
