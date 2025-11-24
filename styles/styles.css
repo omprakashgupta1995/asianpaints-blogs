@@ -10,8 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-@import url('./design-takeaways.css');
-@import url("./paragraph-text.css");
+ @import url('./design-takeaways.css');
+ @import url("./articlepage.css");
+ @import url("./bh-common.css");
+ @import url("./similar.css");
+ @import url("./paragraph-text.css");
+ @import url("./fonts.css");
 
 :root {
   /* colors */
