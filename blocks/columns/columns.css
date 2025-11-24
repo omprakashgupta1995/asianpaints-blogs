@@ -1,3 +1,5 @@
+@import "../../styles/bh-common.css";
+
 .columns > div {
   display: flex;
   flex-direction: column;
