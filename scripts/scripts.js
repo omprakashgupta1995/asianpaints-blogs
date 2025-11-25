@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -16,18 +15,37 @@ import {
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /**
- * Builds hero block and prepends to main in a new section.
- * @param {Element} main The container element
+ * Moves all the attributes from a given elmenet to another given element.
+ * @param {Element} from the element to copy attributes from
+ * @param {Element} to the element to copy attributes to
  */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
+export function moveAttributes(from, to, attributes) {
+  if (!attributes) {
+    // eslint-disable-next-line no-param-reassign
+    attributes = [...from.attributes].map(({ nodeName }) => nodeName);
   }
+  attributes.forEach((attr) => {
+    const value = from.getAttribute(attr);
+    if (value) {
+      to.setAttribute(attr, value);
+      from.removeAttribute(attr);
+    }
+  });
+}
+
+/**
+ * Move instrumentation attributes from a given element to another given element.
+ * @param {Element} from the element to copy attributes from
+ * @param {Element} to the element to copy attributes to
+ */
+export function moveInstrumentation(from, to) {
+  moveAttributes(
+    from,
+    to,
+    [...from.attributes]
+      .map(({ nodeName }) => nodeName)
+      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-')),
+  );
 }
 
 /**
@@ -46,9 +64,9 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks(main) {
+function buildAutoBlocks() {
   try {
-    buildHeroBlock(main);
+    // TODO: add auto block, if needed
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -67,6 +85,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  // decorateImageIcons(main);
 }
 
 /**
@@ -93,11 +112,24 @@ async function loadEager(doc) {
   }
 }
 
+function autolinkModals(element) {
+  element.addEventListener('click', async (e) => {
+    const origin = e.target.closest('a');
+
+    if (origin && origin.href && origin.href.includes('/modals/')) {
+      e.preventDefault();
+      const { openModal } = await import(`${window.hlx.codeBasePath}/blocks/modal/modal.js`);
+      openModal(origin.href);
+    }
+  });
+}
+
 /**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  autolinkModals(doc);
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
@@ -125,6 +157,7 @@ function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
+  import('./sidekick.js').then(({ initSidekick }) => initSidekick());
 }
 
 async function loadPage() {
@@ -134,3 +167,53 @@ async function loadPage() {
 }
 
 loadPage();
+
+const isMobile = window.matchMedia('(max-width: 768px)');
+if (isMobile.matches) {
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('bh-eds-popup-overlay')) {
+      e.target.classList.remove('active');
+      document.querySelector('body').classList.remove('bh-eds-body-no-scroll');
+    }
+  });
+}
+
+// eslint-disable-next-line func-names
+window.onscroll = function () {
+  const header = document.querySelector('.header .nav-wrapper');
+  if (window.pageYOffset > 70) {
+    header.classList.add('sticky');
+  } else {
+    header.classList.remove('sticky');
+  }
+};
+
+export function createElement(tagName, options = {}) {
+  const { classes = [], props = {} } = options;
+  const elem = document.createElement(tagName);
+  const isString = typeof classes === 'string';
+  if (classes || (isString && classes !== '') || (!isString && classes.length > 0)) {
+    const classesArr = isString ? [classes] : classes;
+    elem.classList.add(...classesArr);
+  }
+  if (!isString && classes.length === 0) elem.removeAttribute('class');
+
+  if (props) {
+    Object.keys(props).forEach((propName) => {
+      const isBooleanAttribute = propName === 'allowfullscreen' || propName === 'autoplay' || propName === 'muted' || propName === 'controls';
+
+      // For boolean attributes, add the attribute without a value if it's truthy
+      if (isBooleanAttribute) {
+        if (props[propName]) {
+          elem.setAttribute(propName, '');
+        }
+      } else {
+        const value = props[propName];
+        elem.setAttribute(propName, value);
+      }
+    });
+  }
+
+  return elem;
+}
+
